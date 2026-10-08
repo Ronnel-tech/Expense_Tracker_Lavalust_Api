@@ -53,3 +53,15 @@ $router->get('rollback', 'MigrationController::rollback');
 $router->get('rollback-all', 'MigrationController::rollback_all');
 $router->get('refresh', 'MigrationController::refresh');
 $router->get('status', 'MigrationController::status');
+
+// API Routes - Authentication
+$router->post('api/register', 'AuthController::register');
+$router->post('api/login', 'AuthController::login');
+$router->post('api/refresh', 'AuthController::refresh');
+
+// API Routes - Expenses
+$router->get('api/expenses', 'ExpenseController::index');
+$router->get('api/expenses/summary', 'ExpenseController::summary');
+$router->post('api/expenses', 'ExpenseController::create');
+$router->put('api/expenses/{id}', 'ExpenseController::update');
+$router->delete('api/expenses/{id}', 'ExpenseController::delete');

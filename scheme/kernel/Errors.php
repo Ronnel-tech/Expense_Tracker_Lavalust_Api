@@ -136,7 +136,9 @@ class Errors
 	 */
 	public function show_database_error($message, $sql = '', $bindings = [], $exception = null, $template = 'error_db')
 	{
-		http_response_code(500);
+		if (!headers_sent()) {
+			http_response_code(500);
+		}
 		
 		if (config_item('environment') !== 'development') {
 			exit();
