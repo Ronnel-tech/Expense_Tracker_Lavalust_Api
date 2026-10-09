@@ -1,5 +1,18 @@
 <?php
 define('PREVENT_DIRECT_ACCESS', TRUE);
+
+// Handle CORS headers for all incoming requests (including preflight OPTIONS)
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '*';
+header("Access-Control-Allow-Origin: {$origin}");
+header("Access-Control-Allow-Credentials: true");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS");
+header("Access-Control-Allow-Headers: Authorization, Content-Type, X-Requested-With, X-RateLimit-*");
+header("Access-Control-Max-Age: 3600");
+
+if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
 /**
  * ------------------------------------------------------------------
  * LavaLust - an opensource lightweight PHP MVC Framework
